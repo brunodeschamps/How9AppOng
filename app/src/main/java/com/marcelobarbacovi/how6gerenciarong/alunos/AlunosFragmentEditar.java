@@ -16,10 +16,16 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.marcelobarbacovi.how6gerenciarong.R;
 import com.marcelobarbacovi.how6gerenciarong.database.DataBaseHelper;
+import com.marcelobarbacovi.how6gerenciarong.webservice.DadosEndereco;
+import com.marcelobarbacovi.how6gerenciarong.webservice.RetornarEnderecoPeloCep;
+
+import java.util.concurrent.ExecutionException;
 
 public class AlunosFragmentEditar extends Fragment {
  // variaveis criados do fragment adcionar Alunos
-    TextInputEditText editarNomeAluno, editarResponsavelAluno, editarEnderecoAluno, editarObservacaoAluno;
+    TextInputEditText editarNomeAluno, editarResponsavelAluno, editarCepAluno, editarEnderecoAluno, editarObservacaoAluno,
+    editarNumeroAluno, editarBairroAluno, editarCidadeAluno , editarEstadoAluno;
+
     EditText editarTelefoneAluno;
     private DataBaseHelper   databaseHelper;
     private Aluno a;
@@ -46,7 +52,12 @@ public class AlunosFragmentEditar extends Fragment {
             editarNomeAluno = v.findViewById(R.id.Editar_Nome_aluno);
             editarResponsavelAluno = v.findViewById(R.id.Editar_Responsavel_Aluno);
             editarTelefoneAluno = v.findViewById(R.id.Editar_telefone_Aluno);
+            editarCepAluno = v.findViewById(R.id.Editar_Cep_Aluno);
             editarEnderecoAluno = v.findViewById(R.id.Editar_Endereco_Aluno);
+            editarNumeroAluno = v.findViewById(R.id.Editar_Numero_Aluno);
+            editarBairroAluno = v.findViewById(R.id.Editar_Bairro_Aluno);
+            editarCidadeAluno = v.findViewById(R.id.Editar_Cidade_Aluno);
+            editarEstadoAluno = v.findViewById(R.id.Editar_Estado_Aluno);
             editarObservacaoAluno = v.findViewById(R.id.Editar_observacao_Aluno);
 
             // instancia a classe DataBasehelper
@@ -60,8 +71,31 @@ public class AlunosFragmentEditar extends Fragment {
             editarNomeAluno.setText(aluno.getNome());
             editarResponsavelAluno.setText(aluno.getResponsavel());
             editarTelefoneAluno.setText(aluno.getTelefone());
-            editarEnderecoAluno.setText(aluno.getEndereco());
+            editarCepAluno.setText(aluno.getCep());
+            editarEnderecoAluno.setText(aluno.getRua());
+            editarNumeroAluno.setText(aluno.getNumero());
+            editarCidadeAluno.setText(aluno.getCidade());
+            editarEstadoAluno.setText(aluno.getEstado());
             editarObservacaoAluno.setText(aluno.getObservao());
+
+            editarCepAluno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean hasFocus) {
+                    if (!hasFocus) {
+                        try {
+                            DadosEndereco dadosEndereco = new RetornarEnderecoPeloCep(editarCepAluno.getText().toString()).execute().get();
+                            editarEnderecoAluno.setText(dadosEndereco.getLogradouro());
+                            editarBairroAluno.setText(dadosEndereco.getBairro());
+                            editarCidadeAluno.setText(dadosEndereco.getCidade());
+                            editarEstadoAluno.setText(dadosEndereco.getEstado());
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
 
             // configurar o click editat do fragment alunos
 
@@ -111,8 +145,8 @@ public class AlunosFragmentEditar extends Fragment {
                 Toast.makeText(getActivity(), "Por favor, informe o responsável do Aluno", Toast.LENGTH_LONG).show();
             } else if (editarTelefoneAluno.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), "Por favor, informe o número do telefone do aluno", Toast.LENGTH_LONG).show();
-            } else if (editarEnderecoAluno.getText().toString().equals("")) {
-                Toast.makeText(getActivity(), "Por favor, informe o endereco do aluno ", Toast.LENGTH_LONG).show();
+            } else if (editarCepAluno.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), "Por favor, informe o cep do aluno ", Toast.LENGTH_LONG).show();
 
           /* instancia o objeto da classe aluno e grava dentro
            os dados na variaveis da classe aluno por meio do metodo set
@@ -123,8 +157,13 @@ public class AlunosFragmentEditar extends Fragment {
                 a.setNome(editarNomeAluno.getText().toString());
                 a.setResponsavel(editarResponsavelAluno.getText().toString());
                 a.setTelefone(editarTelefoneAluno.getText().toString());
-                a.setEndereco(editarEnderecoAluno.getText().toString());
+                a.setCep(editarCepAluno.getText().toString());
+                a.setRua(editarEnderecoAluno.getText().toString());
+                a.setNumero(editarNumeroAluno.getText().toString());
+                a.setBairro(editarBairroAluno.getText().toString());
+                a.setCidade(editarCidadeAluno.getText().toString());
                 a.setObservao(editarObservacaoAluno.getText().toString());
+                a.setEstado(editarEstadoAluno.getText().toString());
                 databaseHelper.updateAluno(a);
                 Toast.makeText(getActivity(), "Aluno atualizado", Toast.LENGTH_LONG).show();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_alunos, new AlunosFragmentListar()).commit();

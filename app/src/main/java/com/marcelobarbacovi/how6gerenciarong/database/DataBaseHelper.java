@@ -43,7 +43,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             "nome VARCHAR(100), " +
             "responsavel VARCHAR(100)," +
             "telefone VARCHAR(100)," +
+            "cep VARCHAR(12)," +
             "endereco VARCHAR(100)," +
+            "numero VARCHAR(6)," +
+            "bairro VARCHAR(100)," +
+            "cidade VARCHAR(100)," +
+            "estado VARCHAR(100)," +
             "observacao vARCHAR(100));";
 
 
@@ -154,7 +159,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("nome", a.getNome());
         cv.put("responsavel", a.getResponsavel());
         cv.put("telefone", a.getTelefone());
-        cv.put("endereco", a.getEndereco());
+        cv.put("cep", a.getCep());
+        cv.put("endereco", a.getRua());
+        cv.put("numero", a.getNumero());
+        cv.put("bairro", a.getNumero());
+        cv.put("cidade", a.getCidade());
+        cv.put("estado", a.getEstado());
         cv.put("observacao", a.getObservao());
 
 
@@ -170,7 +180,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("nome", a.getNome());
         cv.put("responsavel", a.getResponsavel());
         cv.put("telefone", a.getTelefone());
-        cv.put("endereco", a.getEndereco());
+        cv.put("cep", a.getCep());
+        cv.put("endereco", a.getRua());
+        cv.put("numero", a.getNumero());
+        cv.put("bairro", a.getNumero());
+        cv.put("cidade", a.getCidade());
+        cv.put("estado", a.getEstado());
         cv.put("observacao", a.getObservao());
         long id = db.update(TABLE_ALUNO, cv,
                 "_id = ?", new String[]{String.valueOf(a.getId())});
@@ -203,7 +218,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
   */
     public Aluno getByIdAluno(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"_id", "nome", "responsavel", "telefone", "endereco", "observacao"};
+        String[] columns = {"_id", "nome", "responsavel", "telefone", "cep", "endereco", "mumero","bairro","cidade","estado", "observacao"};
         String[] args = {String.valueOf(id)};
         Cursor data = db.query(TABLE_ALUNO, columns, "_id = ?", args,
                 null, null, null);
@@ -213,8 +228,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         a.setNome(data.getString(1));
         a.setResponsavel(data.getString(2));
         a.setTelefone(data.getString(3));
-        a.setEndereco(data.getString(4));
-        a.setObservao(data.getString(5));
+        a.setCep(data.getString(4));
+        a.setRua(data.getString(5));
+        a.setNumero(data.getString(6));
+        a.setBairro(data.getString(7));
+        a.setCidade(data.getString(8));
+        a.setEstado(data.getString(9));
+        a.setObservao(data.getString(10));
         data.close();
         db.close();
         return a;

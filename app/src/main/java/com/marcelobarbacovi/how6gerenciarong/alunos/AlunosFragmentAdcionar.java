@@ -14,12 +14,17 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.marcelobarbacovi.how6gerenciarong.R;
 import com.marcelobarbacovi.how6gerenciarong.database.DataBaseHelper;
+import com.marcelobarbacovi.how6gerenciarong.webservice.DadosEndereco;
+import com.marcelobarbacovi.how6gerenciarong.webservice.RetornarEnderecoPeloCep;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class AlunosFragmentAdcionar extends Fragment {
 
    // variaveis para os campos utilizados dentro dos leiaut dos fragments
-    TextInputEditText adcionarNomeAluno, adicionarResponsavelAluno, adicionarEnderecoAluno, adcionarObservacaoAluno;
+    TextInputEditText adcionarNomeAluno, adicionarResponsavelAluno,adicionarCepAluno, adicionarEnderecoAluno,
+    adicionarNumeroAluno,adicionarBairroAluno, adicionarCidadeAluno , adicionarEstadoAluno, adcionarObservacaoAluno;
     EditText adicionarTelefoneAluno;
 
 
@@ -45,9 +50,35 @@ public class AlunosFragmentAdcionar extends Fragment {
 
         adcionarNomeAluno = v.findViewById(R.id.Adicionar_Nome_aluno);
         adicionarResponsavelAluno= v.findViewById(R.id.Adcionar_Responsavel_Aluno); ;
-        adicionarEnderecoAluno = v.findViewById(R.id.Adcionar_Endereco_Aluno);
+        adicionarEnderecoAluno = v.findViewById(R.id.Editar_Endereco_Aluno);
+        adicionarCepAluno = v.findViewById(R.id.Adcionar_Cep_Aluno);
+        adicionarNumeroAluno = v.findViewById(R.id.Adcionar_Numero_Aluno);
+        adicionarBairroAluno = v.findViewById(R.id.Adcionar_Bairro_Aluno);
+        adicionarCidadeAluno = v.findViewById(R.id.Adcionar_Cidade_Aluno);
+        adicionarEstadoAluno = v.findViewById(R.id.Adcionar_Estado_Aluno);
         adcionarObservacaoAluno = v.findViewById(R.id.Adicionar_observacao_Aluno);
         adicionarTelefoneAluno = v.findViewById(R.id.Adcionar_telefone_Aluno);
+
+        adicionarCepAluno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+                    try {
+                        DadosEndereco dadosEndereco = new RetornarEnderecoPeloCep(adicionarCepAluno.getText().toString()).execute().get();
+                        adicionarEnderecoAluno.setText(dadosEndereco.getLogradouro());
+                        adicionarBairroAluno.setText(dadosEndereco.getBairro());
+                        adicionarCidadeAluno.setText(dadosEndereco.getCidade());
+                        adicionarEstadoAluno.setText(dadosEndereco.getEstado());
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
 
         // metodo  para chamar adicionar alunos, quando clicado no button
 
@@ -76,8 +107,8 @@ public class AlunosFragmentAdcionar extends Fragment {
             Toast.makeText(getActivity(), "Por favor, informe o Responsavel do Aluno", Toast.LENGTH_LONG).show();
         } else if (adicionarTelefoneAluno.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "Por favor, informe o telefone do Aluno", Toast.LENGTH_LONG).show();
-        } else if (adicionarEnderecoAluno.getText().toString().equals("")) {
-            Toast.makeText(getActivity(), "Por favor, informe o endereço do Aluno", Toast.LENGTH_LONG).show();
+        } else if (adicionarCepAluno.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), "Por favor, informe o cep do Aluno", Toast.LENGTH_LONG).show();
 // aqui armazena os dados dentro da variavel da classe aluno
         } else {
             DataBaseHelper databaseHelper = new DataBaseHelper(getActivity());
@@ -85,7 +116,12 @@ public class AlunosFragmentAdcionar extends Fragment {
             a.setNome(adcionarNomeAluno.getText().toString());
             a.setResponsavel(adicionarResponsavelAluno.getText().toString());
             a.setTelefone(adicionarTelefoneAluno.getText().toString());
-            a.setEndereco(adicionarEnderecoAluno.getText().toString());
+            a.setCep(adicionarCepAluno.getText().toString());
+            a.setRua(adicionarEnderecoAluno.getText().toString());
+            a.setNumero(adicionarNumeroAluno.getText().toString());
+            a.setBairro(adicionarBairroAluno.getText().toString());
+            a.setCidade(adicionarCidadeAluno.getText().toString());
+            a.setEstado(adicionarEstadoAluno.getText().toString());
             a.setObservao(adcionarObservacaoAluno.getText().toString());
 
            // chama o metodo de inserção no banco de dados SQLLite com a classe DataBaseHelper
