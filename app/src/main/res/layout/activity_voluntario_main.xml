@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".voluntarios.VoluntarioMainActivity">
+    tools:context=".voluntarios.VoluntarioMainActivity" >
+
 
 
     <LinearLayout
@@ -48,7 +49,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#775AAC"
-                android:text="adcionar_voluntario" />
+                android:text="adcionar voluntario" />
         </LinearLayout>
 
         <FrameLayout

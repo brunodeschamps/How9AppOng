@@ -47,7 +47,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="#775AAC"
-                android:text="adicionar_parceiro" />
+                android:text="adicionar parceiro" />
         </LinearLayout>
 
         <FrameLayout

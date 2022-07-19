@@ -53,7 +53,8 @@
                 android:layout_margin="10dp"
                 android:padding="5dp"
                 android:text="Telefone"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
 
             <EditText
@@ -69,11 +70,15 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereco" />
+                android:text="Endereco"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Cep_Aluno"
@@ -84,7 +89,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Endereco_Aluno"
@@ -95,7 +101,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Numero_Aluno"
@@ -106,18 +113,20 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="68dp"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Bairro_Aluno"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="79dp"
                     android:hint="Bairro" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Cidade_Aluno"
@@ -128,7 +137,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="07dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Editar_Estado_Aluno"

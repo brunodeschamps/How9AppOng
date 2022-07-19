@@ -110,6 +110,7 @@ public class VoluntariosFragmentEditar extends Fragment {
             v.setName(textInputNome.getText().toString());
             v.setEspecializacao(textInputEspecializacao.getText().toString());
             v.setTelefone(editTextTelefone.getText().toString());
+            v.setFuncao(textInputFuncao.getText().toString());
 
             // chama o metodo update da classe dataBaseHelper para Voluntarios
             databaseHelper.updateVoluntario(v);

@@ -19,7 +19,7 @@
             android:name=".voluntarios.VoluntarioMainActivity"
             android:exported="false"
             android:label="@string/title_activity_voluntarios_main"
-            android:theme="@style/Theme.How6GerenciarOng.NoActionBar" />
+            />
 
         <activity
             android:name=".alunos.AlunosActivity"

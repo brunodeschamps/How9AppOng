@@ -162,7 +162,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("cep", a.getCep());
         cv.put("endereco", a.getRua());
         cv.put("numero", a.getNumero());
-        cv.put("bairro", a.getNumero());
+        cv.put("bairro", a.getBairro());
         cv.put("cidade", a.getCidade());
         cv.put("estado", a.getEstado());
         cv.put("observacao", a.getObservao());
@@ -183,7 +183,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("cep", a.getCep());
         cv.put("endereco", a.getRua());
         cv.put("numero", a.getNumero());
-        cv.put("bairro", a.getNumero());
+        cv.put("bairro", a.getBairro());
         cv.put("cidade", a.getCidade());
         cv.put("estado", a.getEstado());
         cv.put("observacao", a.getObservao());
@@ -218,7 +218,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
   */
     public Aluno getByIdAluno(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"_id", "nome", "responsavel", "telefone", "cep", "endereco", "mumero","bairro","cidade","estado", "observacao"};
+        String[] columns = {"_id", "nome", "responsavel", "telefone", "cep", "endereco", "numero","bairro","cidade","estado", "observacao"};
         String[] args = {String.valueOf(id)};
         Cursor data = db.query(TABLE_ALUNO, columns, "_id = ?", args,
                 null, null, null);

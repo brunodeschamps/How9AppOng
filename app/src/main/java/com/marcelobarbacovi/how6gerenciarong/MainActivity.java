@@ -72,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
+            case R.id.menu_home:
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+
+                startActivity(intent1);
+
+
+                return true;
+
             case R.id.menu_voluntarios:
                 Intent intent = new Intent(getApplicationContext(), VoluntarioMainActivity.class);
 

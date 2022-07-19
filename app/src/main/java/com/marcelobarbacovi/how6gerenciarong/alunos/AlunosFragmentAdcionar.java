@@ -50,7 +50,7 @@ public class AlunosFragmentAdcionar extends Fragment {
 
         adcionarNomeAluno = v.findViewById(R.id.Adicionar_Nome_aluno);
         adicionarResponsavelAluno= v.findViewById(R.id.Adcionar_Responsavel_Aluno); ;
-        adicionarEnderecoAluno = v.findViewById(R.id.Editar_Endereco_Aluno);
+        adicionarEnderecoAluno = v.findViewById(R.id.Adicionar_Endereco_Aluno);
         adicionarCepAluno = v.findViewById(R.id.Adcionar_Cep_Aluno);
         adicionarNumeroAluno = v.findViewById(R.id.Adcionar_Numero_Aluno);
         adicionarBairroAluno = v.findViewById(R.id.Adcionar_Bairro_Aluno);

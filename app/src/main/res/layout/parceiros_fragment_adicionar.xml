@@ -27,6 +27,7 @@
                     android:id="@+id/textAdicionar_nome_Parceiro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Digite o Parceiro"
                     android:textColorHint="@color/design_default_color_error" />
             </com.google.android.material.textfield.TextInputLayout>
 

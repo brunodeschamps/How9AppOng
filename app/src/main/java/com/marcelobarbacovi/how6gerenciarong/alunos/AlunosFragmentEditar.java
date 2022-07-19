@@ -74,6 +74,7 @@ public class AlunosFragmentEditar extends Fragment {
             editarCepAluno.setText(aluno.getCep());
             editarEnderecoAluno.setText(aluno.getRua());
             editarNumeroAluno.setText(aluno.getNumero());
+            editarBairroAluno.setText(aluno.getBairro());
             editarCidadeAluno.setText(aluno.getCidade());
             editarEstadoAluno.setText(aluno.getEstado());
             editarObservacaoAluno.setText(aluno.getObservao());

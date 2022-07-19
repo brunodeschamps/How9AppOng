@@ -77,7 +77,7 @@
                 android:id="@+id/textEditar_Funcao_Voltuntario"
                 android:layout_width="match_parent"
                 android:layout_height="99dp"
-                android:hint="hint" />
+                android:hint="Digite  a funcao" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
